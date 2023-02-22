@@ -17,4 +17,4 @@ GeneratePage () {
 	echo "done"
 }
 
-GeneratePage $1
+find $ARTICLES_PATH/* | while read file; do GeneratePage "$file"; done
