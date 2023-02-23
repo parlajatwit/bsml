@@ -13,7 +13,7 @@ GeneratePage () {
 	FNAME=$(echo $1 | xargs basename -s .md)
 	FPATH="$BUILD_PATH/$FNAME.html"
 	export CONTENT=$(sed -n '4,$p' $1 | $MD_CONVERTER)
-	export FOOTER=$(cat $LINKS | sort | sed -e 's/$/  /' | $MD_CONVERTER) 
+	export FOOTER=$(cat $LINKS | sort -r | sed -e 's/$/  /' | $MD_CONVERTER) 
 	envsubst < $TEMPLATE > $FPATH
 }
 
@@ -26,6 +26,8 @@ GenerateLinks() {
 }
 
 rm $LINKS
+mkdir $BUILD_PATH
 find "$ARTICLES_PATH"/* | while read file; do GenerateLinks "$file"; done
 find "$ARTICLES_PATH"/* | while read file; do GeneratePage "$file"; done
+rm $LINKS
 echo "done"

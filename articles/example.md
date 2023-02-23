@@ -1,6 +1,6 @@
 article name
 jeff
-2023-2-17
+2023-02-17
 here's an example of an article.  
 markdown tests below
 # h1
