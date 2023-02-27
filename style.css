@@ -1,0 +1,15 @@
+.content {
+    margin: auto;
+    width: 50%;
+}
+
+body {
+    color: #181818;
+    font-size: 16px;
+    line-height: 1.8;
+    font-family: sans-serif;
+}
+
+h2 {
+    line-height: 1.2;
+}
