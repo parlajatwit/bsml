@@ -5,6 +5,7 @@ ARTICLES_PATH="articles"
 BUILD_PATH="build"
 TEMPLATE="template.html"
 LINKS="links"
+UNKNOWN="?"
 
 GeneratePage () {
 	TEMPLATE=$(sed -n '4p' $1)
@@ -19,8 +20,23 @@ GeneratePage () {
 GenerateLinks() {
 	TITLE=$(sed -n '1p' $1)
 	AUTHOR=$(sed -n '2p' $1)
+	if [ "$AUTHOR" = "$UNKNOWN" ]; then
+		AUTHOR=""
+	else
+		TEMP_AUTHOR="$AUTHOR"
+		AUTHOR="$AUTHOR -"
+	fi
 	DATE=$(sed -n '3p' $1)
-	echo "$DATE - $AUTHOR - [$TITLE]($(basename -s .md $1).html)" >> "$LINKS"
+	if [ "$DATE" = "$UNKNOWN" ]; then
+		DATE=""
+	else
+		TEMP_DATE="$DATE"
+		DATE="$DATE -"
+	fi
+	echo "$DATE $AUTHOR [$TITLE]($(basename -s .md $1).html)" >> "$LINKS"
+	# restore variables before " -" appended
+	AUTHOR=$TEMP_AUTHOR
+	DATE=$TEMP_DATE
 }
 
 GenerateFolder() {
