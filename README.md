@@ -10,7 +10,10 @@ Article Name
 Author
 yyyy-mm-dd
 <template file path>
+link
 ```
+if the author or date are unknown, write the respective value as $UNKNOWN (default: ``?``)   
+if you do not want the article to appear in the category links, write anything else in the 5th line  
 after that, write the content of your article. markdown is supported and will be translated to html tags.  
 to generate all articles, run ``$ ./create.sh``
 the articles will be available in ``./build/<category>/<article>.html``
@@ -27,3 +30,4 @@ write ``$VARIABLE`` wherever you want the following information to be inserted, 
 - ``$CONTENT`` article content
 - ``$FOOTER`` links to other articles
 - ``$CATEGORY`` article category name
+- ``$UNKNOWN`` character/string for missing values
