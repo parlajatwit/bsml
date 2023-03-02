@@ -1,12 +1,5 @@
 #!/bin/sh
 
-MD_CONVERTER="smu"
-ARTICLES_PATH="articles"
-BUILD_PATH="build"
-TEMPLATE="template.html"
-LINKS="links"
-UNKNOWN="?"
-
 GeneratePage () {
 	TEMPLATE=$(sed -n '4p' $1)
 	FPATH="$BUILD_PATH/$(dirname $1 | xargs basename)/$(basename -s .md $1).html"
@@ -48,6 +41,7 @@ GenerateFolder() {
 	[ -f "$LINKS" ] && rm "$LINKS"
 }
 
+. ./.bsmlrc
 rm -r $BUILD_PATH
 mkdir -p $BUILD_PATH
 find "$ARTICLES_PATH" -maxdepth 1 | sed -n '2,$p' | while read file; do GenerateFolder "$(basename $file)"; done

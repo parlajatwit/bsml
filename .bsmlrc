@@ -1,0 +1,8 @@
+MD_CONVERTER="smu"
+ARTICLES_PATH="articles"
+BUILD_PATH="build"
+TEMPLATE="template.html"
+LINKS="links"
+UNKNOWN="?"
+HOME_PAGE="index.html"
+export HOME_PAGE
